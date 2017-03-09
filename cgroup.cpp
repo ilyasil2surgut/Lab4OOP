@@ -7,7 +7,7 @@ CGroup::CGroup(QGraphicsScene *scene):CShape(scene)
     mainscene=scene;
     group.addPrototype(new CCircle(mainscene));
     group.addPrototype(new CRect(mainscene));
-    //group.addPrototype(new CRect(mainscene));
+//    group.addPrototype(new CGroup(mainscene));
 }
 
 void CGroup::addtogroup(CShape *item)

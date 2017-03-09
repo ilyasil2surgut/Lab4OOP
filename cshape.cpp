@@ -8,12 +8,14 @@ CShape::CShape(QGraphicsScene *scene)
 //    qDebug()<<"CShape added";
     standardpen=QPen(Qt::blue);
     standardpen.setWidth(3);
-    selcurpen=QPen(Qt::yellow);
+    selcurpen=QPen(Qt::red);
     selcurpen.setWidth(3);
+    selcurpen.setBrush(QBrush(Qt::red,Qt::Dense4Pattern));
     curpen=QPen(Qt::green);
-    curpen.setWidth(8);
+    curpen.setWidth(5);
+    curpen.setBrush(QBrush(Qt::blue,Qt::Dense4Pattern));
     selpen=QPen(Qt::red);
-    selpen.setWidth(8);
+    selpen.setWidth(5);
 }
 
 bool CShape::isSelected()
