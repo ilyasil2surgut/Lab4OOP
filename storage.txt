@@ -1,0 +1,4 @@
+Storage:3
+CCircle:190 180 50
+CCircle:155 337 50
+CCircle:343 257 50
