@@ -3,7 +3,7 @@
 
 CCircle::CCircle(QGraphicsScene *scene):CShape(scene)
 {
-    qDebug()<<"Circle added";
+//    qDebug()<<"Circle added";
     name="CCircle";
     isselected=false;
     flag=true;
@@ -13,7 +13,7 @@ CCircle::CCircle(QPointF point,  QGraphicsScene *scene, int R):CShape(scene)
 {
     center=point;
     radius=R;
-    qDebug()<<"Circle added";
+//    qDebug()<<"Circle added";
     name="CCircle";
     isselected=false;
     flag=false;

@@ -5,7 +5,7 @@ CShape::CShape(QGraphicsScene *scene)
     mainscene=scene;
     isselected=false;
     name="CShape";
-    qDebug()<<"CShape added";
+//    qDebug()<<"CShape added";
     standardpen=QPen(Qt::blue);
     standardpen.setWidth(3);
     selcurpen=QPen(Qt::yellow);

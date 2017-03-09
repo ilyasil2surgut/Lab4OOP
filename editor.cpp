@@ -8,6 +8,7 @@ Editor::Editor(QGraphicsView *_view, QListWidget *_listwidget,State *_state,QSpi
     radius=_radius;
     Objects.addPrototype(new CCircle(scene));
     Objects.addPrototype(new CRect(scene));
+    Objects.addPrototype(new CGroup(scene));
     connect(this,SIGNAL(redraws()),scene,SLOT(clear()));
 }
 
@@ -34,7 +35,7 @@ void Editor::mousePressEvent(QMouseEvent *event)
         else if(state->rectstate())Objects.append(new CRect(scene));
         Objects.getlast()->StartTempDraw(event->pos());
         Objects.getlast()->setcurrent();
-    }
+    }    
 }
 
 void Editor::mouseReleaseEvent(QMouseEvent *event)
@@ -79,6 +80,29 @@ void Editor::loadItems()
     Objects.Load("../Lab4OOP/storage.txt");
     redraw();
     drawlistwidget();
+}
+
+void Editor::groupItems()
+{
+    int count=0;
+    for(Iterator<CShape*>* i=Objects.CreateIterator();!i->Eol();i->next()){
+        if(i->current()->isSelected()) count++;
+        //if (count>1) break;
+    }
+    qDebug()<<count<<" items to be grouped";
+    if(count>1){
+        CGroup *group=new CGroup(scene);
+        for(int i=0;i<Objects.length();){
+            if(Objects.get(i)->isSelected()){
+                qDebug()<<"i:"<<i<<"Adding to group:"<<Objects.get(i)->save();
+                group->addtogroup(Objects.pop(i));
+            }
+            else i++;
+        }
+        Objects.append(group);
+        drawlistwidget();
+    }
+    else qDebug()<<"Not enough elements selected";
 }
 
 void Editor::setup()

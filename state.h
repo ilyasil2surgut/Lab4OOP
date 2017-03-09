@@ -14,12 +14,14 @@ public:
     bool removestate();
     bool circlestate();
     bool rectstate();
+    bool groupstate();
 private:
     bool add_s;
     bool select_s;
     bool remove_s;
     bool circle_s;
     bool rectangle_s;
+    bool group_s;
 /*signals:
     s_addstate();
     s_selectstate();
@@ -29,6 +31,7 @@ public slots:
     adds();
     selects();
     removes();
+    groups();
     circle();
     rectangle();
 };

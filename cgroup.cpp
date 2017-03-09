@@ -3,7 +3,7 @@
 
 CGroup::CGroup(QGraphicsScene *scene):CShape(scene)
 {
-    name="Group";
+    name="CGroup";
     mainscene=scene;
     group.addPrototype(new CCircle(mainscene));
     group.addPrototype(new CRect(mainscene));
@@ -79,6 +79,7 @@ QString CGroup::save()
 
 void CGroup::load(QString str)
 {
+    group.clear();
     if(str.split(":").first()==classname()){
         QStringList list=str.split(":").last().split("|");
         list.pop_back();
@@ -90,10 +91,10 @@ void CGroup::load(QString str)
             QString classname=current.split(":").first();
             for(int j=0;j<prototypes.length();j++){
                 if(classname==prototypes.get(j)->classname()){
-                    group.Prototypes().get(j)->load(current);
-                    if(CShape* add=dynamic_cast<CShape*>(group.Prototypes().get(j)->clone())){
-                        addtogroup(add);
-                    }
+                    prototypes.get(j)->load(current);
+                    CShape* add=dynamic_cast<CShape*>(prototypes.get(j)->clone());
+                    add->draw();
+                    addtogroup(add);
                 }
             }
         }

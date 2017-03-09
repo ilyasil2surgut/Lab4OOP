@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_remove,SIGNAL(clicked(bool)),editor,SLOT(removes()));
     connect(ui->pb_circle,SIGNAL(clicked(bool)),state,SLOT(circle()));
     connect(ui->pb_rect,SIGNAL(clicked(bool)),state,SLOT(rectangle()));
+    connect(ui->pb_group,SIGNAL(clicked(bool)),editor,SLOT(groupItems()));
     ui->spinBox->setValue(50);
     ui->spinBox->setMinimum(1);
 }

@@ -8,6 +8,7 @@
 #include <QGraphicsScene>
 #include <QSpinBox>
 #include <crect.h>
+#include <cgroup.h>
 
 class Editor : public QGraphicsView
 {
@@ -22,6 +23,7 @@ public:
     void redraw();
     void saveItems();
     void loadItems();
+
 private:
     QGraphicsView *view;
     QGraphicsScene *scene;
@@ -37,6 +39,7 @@ signals:
 
 public slots:
     removes();
+    void groupItems();
 };
 
 #endif // EDITOR_H
