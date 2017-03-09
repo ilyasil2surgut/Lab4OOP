@@ -14,17 +14,17 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    ../OOP4/ccircle.cpp \
-    ../OOP4/editor.cpp \
-    ../OOP4/state.cpp \
+    ccircle.cpp \
+    editor.cpp \
+    state.cpp \
     cshape.cpp \
     crect.cpp \
     cgroup.cpp
 
 HEADERS  += mainwindow.h \
-    ../OOP4/ccircle.h \
-    ../OOP4/editor.h \
-    ../OOP4/state.h \
+    ccircle.h \
+    editor.h \
+    state.h \
     ../lab3oop/emptyiterator.h \
     ../lab3oop/isaveable.h \
     ../lab3oop/iterator.h \

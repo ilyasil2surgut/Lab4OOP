@@ -9,6 +9,7 @@
 #include <QGraphicsScene>
 #include <QListWidgetItem>
 #include <../lab3oop/isaveable.h>
+#include <../lab3oop/slstorage.h>
 class CShape:public ISaveable
 {
 public:

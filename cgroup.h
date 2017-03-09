@@ -6,6 +6,7 @@ class CGroup:public CShape
 {
 public:
     CGroup(QGraphicsScene *scene);
+    void addtogroup(CShape* item);
     virtual void setStyle();
     virtual void draw();
     void redraw();
@@ -17,6 +18,8 @@ public:
     virtual void load(QString);
     virtual ISaveable *clone();
     virtual void removes();
+private:
+    SLStorage<CShape*> group;
 };
 
 #endif // CGROUP_H
