@@ -7,6 +7,7 @@ CGroup::CGroup(QGraphicsScene *scene):CShape(scene)
     mainscene=scene;
     group.addPrototype(new CCircle(mainscene));
     group.addPrototype(new CRect(mainscene));
+    //group.addPrototype(new CRect(mainscene));
 }
 
 void CGroup::addtogroup(CShape *item)
@@ -79,20 +80,20 @@ QString CGroup::save()
 
 void CGroup::load(QString str)
 {
-    group.clear();
-    if(str.split(":").first()==classname()){
-        QStringList list=str.split(":").last().split("|");
-        list.pop_back();
-        Storage<ISaveable*> prototypes=group.Prototypes();
-        for(;!list.isEmpty();){
-            QString current=list.first();
-            list.removeFirst();
-            current.replace(";",":");
-            QString classname=current.split(":").first();
-            for(int j=0;j<prototypes.length();j++){
-                if(classname==prototypes.get(j)->classname()){
-                    prototypes.get(j)->load(current);
-                    CShape* add=dynamic_cast<CShape*>(prototypes.get(j)->clone());
+    //group.clear();
+    QStringList list=str.split(":").last().split("|");
+    list.pop_back();
+    Storage<ISaveable*> prototypes=group.Prototypes();
+    for(;!list.isEmpty();){
+        QString current=list.first();
+        list.removeFirst();
+        current.replace(";",":");
+        QString classname=current.split(":").first();
+        for(int j=0;j<prototypes.length();j++){
+            if(classname==prototypes.get(j)->classname()){
+                prototypes.get(j)->load(current);
+                CShape* add=dynamic_cast<CShape*>(prototypes.get(j)->clone());
+                if(add){
                     add->draw();
                     addtogroup(add);
                 }

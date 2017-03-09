@@ -5,7 +5,6 @@ CRect::CRect(QGraphicsScene *scene):CShape(scene)
 {
     name=QString("Rectangle");
     flag=true;
-//    qDebug()<<"Rectangle added";
 }
 
 CRect::CRect(QPointF topleft, QPointF bottomright, QGraphicsScene *scene):CShape(scene)
@@ -14,7 +13,6 @@ CRect::CRect(QPointF topleft, QPointF bottomright, QGraphicsScene *scene):CShape
     flag=false;
     rect.setTopLeft(topleft);
     rect.setBottomRight(bottomright);
-//    qDebug()<<"Rectangle added";
 }
 
 void CRect::setStyle()

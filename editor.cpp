@@ -126,17 +126,15 @@ Editor::removes()
     for(int i=0;i<Objects.length();){
         if(Objects.get(i)->isSelected()){
             if(Objects.get(i)->isCurrent()){
-                qDebug()<<"To remove"<<Objects.get(i)->save();
+                qDebug()<<"To remove1"<<Objects.get(i)->save();
                 Objects.pop(i)->removes();
                 Objects.getlast()->setcurrent();
-                i=0;
                 deleted=true;
             }
             else
             {
-                qDebug()<<"To remove"<<Objects.get(i)->save();
+                qDebug()<<"To remove2"<<Objects.get(i)->save();
                 Objects.pop(i)->removes();
-                i=0;
                 deleted=true;
             }
         }
@@ -147,10 +145,9 @@ Editor::removes()
         {
             if(Objects.get(i)->isCurrent())
             {
-                    qDebug()<<"To remove"<<Objects.get(i)->save();
+                    qDebug()<<"To remove3"<<Objects.get(i)->save();
                     Objects.pop(i)->removes();
                     if(!Objects.isEmpty())Objects.getlast()->setcurrent();
-                    i=0;
                     break;
             }
             else i++;
