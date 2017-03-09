@@ -32,13 +32,17 @@ QString CShape::classname()
 }
 
 void CShape::selected()
+{    
+    if(!isselected){
+        isselected=true;
+        setStyle();
+    }
+}
+
+void CShape::unselected()
 {
     if(isselected){
         isselected=false;
-        setStyle();
-    }
-    else{
-        isselected=true;
         setStyle();
     }
 }

@@ -18,6 +18,7 @@ public:
     virtual bool isSelected();    
     virtual bool isCurrent();
     virtual void selected();
+    virtual void unselected();
     virtual void setcurrent();
     virtual void removecurrent();
 

@@ -1,6 +1,8 @@
 #ifndef CGROUP_H
 #define CGROUP_H
 #include <cshape.h>
+#include <ccircle.h>
+#include <crect.h>
 
 class CGroup:public CShape
 {
@@ -21,6 +23,7 @@ public:
     virtual bool isSelected();
     virtual bool isCurrent();
     virtual void selected();
+    virtual void unselected();
     virtual void setcurrent();
     virtual void removecurrent();
 private:

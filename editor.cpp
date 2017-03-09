@@ -6,7 +6,8 @@ Editor::Editor(QGraphicsView *_view, QListWidget *_listwidget,State *_state,QSpi
     setup();
     listwidget=_listwidget;
     radius=_radius;
-    Objects.addPrototype(new CCircle(QPointF(),scene));
+    Objects.addPrototype(new CCircle(scene));
+    Objects.addPrototype(new CRect(scene));
     connect(this,SIGNAL(redraws()),scene,SLOT(clear()));
 }
 
@@ -17,9 +18,12 @@ void Editor::mousePressEvent(QMouseEvent *event)
         int j=0;
         for(Iterator<CShape*>* i=Objects.CreateIterator();!i->Eol();i->next()){
             if(i->current()->pointInside(event->pos())){
-                i->current()->selected();
-                listwidget->setCurrentRow(j);
-                qDebug()<<i->current()->classname()<<" selected";
+                if(i->current()->isSelected())i->current()->unselected();
+                else {
+                    i->current()->selected();
+                    listwidget->setCurrentRow(j);
+                    qDebug()<<i->current()->classname()<<" selected";
+                }
             }
             j++;
         }

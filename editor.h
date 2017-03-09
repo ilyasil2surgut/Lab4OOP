@@ -3,8 +3,8 @@
 
 #include <QGraphicsView>
 #include <../lab3oop/slstorage.h>
-#include <../OOP4/ccircle.h>
-#include <../OOP4/state.h>
+#include <ccircle.h>
+#include <state.h>
 #include <QGraphicsScene>
 #include <QSpinBox>
 #include <crect.h>

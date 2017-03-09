@@ -1,8 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include <../OOP4/state.h>
-#include <../OOP4/editor.h>
-#include <../OOP4/ccircle.h>
+#include <state.h>
+#include <editor.h>
+#include <ccircle.h>
 #include <QMainWindow>
 
 namespace Ui {
