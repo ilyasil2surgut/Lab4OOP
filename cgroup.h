@@ -18,6 +18,11 @@ public:
     virtual void load(QString);
     virtual ISaveable *clone();
     virtual void removes();
+    virtual bool isSelected();
+    virtual bool isCurrent();
+    virtual void selected();
+    virtual void setcurrent();
+    virtual void removecurrent();
 private:
     SLStorage<CShape*> group;
 };
