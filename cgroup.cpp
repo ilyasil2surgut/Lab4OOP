@@ -66,17 +66,47 @@ bool CGroup::pointInside(QPointF point)
 
 QString CGroup::save()
 {
-
+    QStringList out;
+    out<<classname();out<<":";
+    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
+        QString temp=i->current()->save();temp.chop(1);temp.replace(":",";");
+        out<<temp;
+        out<<"|";
+    }
+    out<<"\n";
+    return out.join(QString());
 }
 
-void CGroup::load(QString)
+void CGroup::load(QString str)
 {
-
+    if(str.split(":").first()==classname()){
+        QStringList list=str.split(":").last().split("|");
+        list.pop_back();
+        Storage<ISaveable*> prototypes=group.Prototypes();
+        for(;!list.isEmpty();){
+            QString current=list.first();
+            list.removeFirst();
+            current.replace(";",":");
+            QString classname=current.split(":").first();
+            for(int j=0;j<prototypes.length();j++){
+                if(classname==prototypes.get(j)->classname()){
+                    group.Prototypes().get(j)->load(current);
+                    if(CShape* add=dynamic_cast<CShape*>(group.Prototypes().get(j)->clone())){
+                        addtogroup(add);
+                    }
+                }
+            }
+        }
+    }
 }
 
 ISaveable *CGroup::clone()
 {
-
+    CGroup* out= new CGroup(mainscene);
+    for(int i=0;i<group.length();i++){
+        out->addtogroup(group.get(i));
+    }
+    return out;
 }
 
 void CGroup::removes()
@@ -128,6 +158,7 @@ void CGroup::setcurrent()
 
 void CGroup::removecurrent()
 {
+    iscurrent=false;
     for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
         i->current()->removecurrent();
     }
