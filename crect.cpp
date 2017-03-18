@@ -67,7 +67,7 @@ void CRect::FinishTempDraw(QPointF point)
 
 bool CRect::pointInside(QPointF point)
 {
-    return rect.contains(point);
+    return item->contains(point);
 }
 
 QString CRect::save()

@@ -21,9 +21,7 @@ CCircle::CCircle(QPointF point,  QGraphicsScene *scene, int R):CShape(scene)
 
 bool CCircle::pointInside(QPointF point)
 {
-    double r=sqrt(pow(point.x()-center.x(),2)+pow(point.y()-center.y(),2));
-    if (r<=radius) return true;
-    else return false;
+    return item->contains(point);
 }
 
 void CCircle::setStyle()
