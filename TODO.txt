@@ -1,0 +1,7 @@
+Ungroup
+N-polygon
+Rotate
+	canRotate
+Move
+	canMove
+Save/Load refinement
