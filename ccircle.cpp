@@ -76,7 +76,6 @@ void CCircle::FinishTempDraw(QPointF point)
     if(flag){
         radius=QLineF(Center,point).length();
         flag=false;
-        item->setTransformOriginPoint(QPointF(radius,radius));
         setRotationCenter(center());
         redraw();
     }
@@ -87,14 +86,20 @@ bool CCircle::canRotate(double)
     return true;
 }
 
-void CCircle::Rotate(QPointF)
+void CCircle::Rotate(QPointF end)
 {
-
+    item->setRotation(calculateAngle(end));
 }
 
 QPointF CCircle::center()
 {
     return Center;
+}
+
+void CCircle::setRotationCenter(QPointF point)
+{
+    rotationcenter=point;
+    item->setTransformOriginPoint(point);
 }
 
 void CCircle::redraw()

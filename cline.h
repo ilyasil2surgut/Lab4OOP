@@ -23,9 +23,11 @@ public:
     virtual bool canRotate(double);
     virtual void Rotate(QPointF);
     virtual QPointF center();
+    virtual void setRotationCenter(QPointF);
 private:
     QLineF line;
     QGraphicsLineItem *item;
+    QGraphicsPolygonItem *clickpolygon;
 };
 
 #endif // CLINE_H

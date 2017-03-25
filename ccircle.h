@@ -27,6 +27,7 @@ public:
     virtual bool canRotate(double);
     virtual void Rotate(QPointF);
     virtual QPointF center();
+    void setRotationCenter(QPointF);
 private:
     QPointF Center;
     int radius;

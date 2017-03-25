@@ -5,6 +5,7 @@ CLine::CLine(QGraphicsScene *scene):CShape(scene)
 {
     name="CLine";
     flag=true;
+    clickpolygon=new QGraphicsPolygonItem();
 }
 
 CLine::CLine(QGraphicsScene *scene, QLineF _line):CShape(scene)
@@ -12,6 +13,7 @@ CLine::CLine(QGraphicsScene *scene, QLineF _line):CShape(scene)
     name="CLine";
     flag=false;
     line=_line;
+    clickpolygon=new QGraphicsPolygonItem(createclickpol());
 }
 
 bool CLine::pointInside(QPointF point)
@@ -24,17 +26,17 @@ void CLine::draw()
 {
     item=new QGraphicsLineItem();
     redraw();
-//    clickpolygon=new QGraphicsPolygonItem();
     mainscene->addItem(item);
-    //mainscene->addItem(clickpolygon);
+    mainscene->addItem(clickpolygon);
     setStyle();
     item->show();
+    clickpolygon->hide();
 }
 
 void CLine::redraw()
 {
     item->setLine(line);
-    //createclickpol();
+    clickpolygon->setPolygon(createclickpol());
 }
 
 void CLine::setStyle()
@@ -48,7 +50,7 @@ void CLine::setStyle()
 void CLine::removes()
 {
     mainscene->removeItem(item);
-//    mainscene->removeItem(clickpolygon);
+    mainscene->removeItem(clickpolygon);
 }
 
 QString CLine::save()
@@ -108,11 +110,9 @@ void CLine::FinishTempDraw(QPointF point)
 QPolygonF CLine::createclickpol()
 {
     QPolygonF pol;
-    QPointF down(0,50);QPointF up(0,-50);
-    pol<<(line.p1()+down)<<(line.p1()+up)<<(line.p2()+down)<<(line.p2()+up);
-    //qDebug()<<pol;
+    QPointF down(0,15);QPointF up(0,-15);
+    pol<<(line.p1()+down)<<(line.p2()+down)<<(line.p2()+up)<<(line.p1()+up);
     return pol;
-    //    clickpolygon->setPolygon(pol);
 }
 
 bool CLine::canRotate(double)
@@ -120,12 +120,23 @@ bool CLine::canRotate(double)
     return false;
 }
 
-void CLine::Rotate(QPointF)
+void CLine::Rotate(QPointF point)
 {
-
+    item->setRotation(calculateAngle(point));
+    clickpolygon->setRotation(calculateAngle(point));
 }
 
 QPointF CLine::center()
 {
-    return createclickpol().boundingRect().center();
+    QPointF a;
+    a.setX((line.p1().x()+line.p2().x())/2);
+    a.setY((line.p1().y()+line.p2().y())/2);
+    return a;
+}
+
+void CLine::setRotationCenter(QPointF point)
+{
+    rotationcenter=point;
+    item->setTransformOriginPoint(point);
+    clickpolygon->setTransformOriginPoint(point);
 }

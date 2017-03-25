@@ -100,7 +100,7 @@ bool CRect::canRotate(double angle)
 
 void CRect::Rotate(QPointF end)
 {
-    if(canRotate(calculateAngle(end)))item->setRotation(calculateAngle(end));
+    item->setRotation(calculateAngle(end));
 }
 
 QPointF CRect::center()
