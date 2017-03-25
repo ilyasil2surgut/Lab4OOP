@@ -16,6 +16,7 @@ public:
     bool circlestate();
     bool rectstate();
     bool polstate();
+    bool linestate();
 
     bool groupstate();
 private:
@@ -26,6 +27,7 @@ private:
     bool circle_s;
     bool rectangle_s;
     bool polygon_s;
+    bool line_s;
 
     bool group_s;
 /*signals:
@@ -42,6 +44,7 @@ public slots:
     circle();
     rectangle();
     polygon();
+    line();
 };
 
 #endif // STATE_H

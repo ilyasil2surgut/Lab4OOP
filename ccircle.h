@@ -14,9 +14,7 @@ class CCircle:public CShape
 {
 public:
     CCircle(QGraphicsScene *scene);
-    CCircle(QPointF point,QGraphicsScene *scene, int R=50);
-    void setStyle();
-    bool pointInside(QPointF point);
+    CCircle(QPointF point,QGraphicsScene *scene, int R);
     void draw();
     void redraw();
     void removes();
@@ -30,7 +28,6 @@ private:
     QPointF center;
     int radius;
     QGraphicsEllipseItem *item;
-    bool flag;
 };
 
 #endif // CCIRCLE_H

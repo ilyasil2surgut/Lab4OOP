@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pb_group,SIGNAL(clicked(bool)),editor,SLOT(groupItems()));
     connect(ui->pb_Ungroup,SIGNAL(clicked(bool)),editor,SLOT(ungroupItems()));
     connect(ui->pb_polygon,SIGNAL(clicked(bool)),state,SLOT(polygon()));
+    connect(ui->pb_line,SIGNAL(clicked(bool)),state,SLOT(line()));
 }
 
 MainWindow::~MainWindow()

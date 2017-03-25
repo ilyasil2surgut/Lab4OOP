@@ -10,10 +10,8 @@ public:
     virtual void StartTempDraw(QPointF point);
     virtual void ContTempDraw(QPointF point);
     virtual void FinishTempDraw(QPointF point);
-    virtual void setStyle();
     virtual void draw();
     virtual void redraw();
-    virtual bool pointInside(QPointF point);
     virtual QString save();
     virtual void load(QString);
     virtual ISaveable *clone();
@@ -23,7 +21,6 @@ private:
     int sides;
     QPointF center;
     int radius;
-    bool flag;
     QPolygonF polygon;
     QGraphicsPolygonItem* item;
 };

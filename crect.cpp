@@ -15,21 +15,10 @@ CRect::CRect(QPointF topleft, QPointF bottomright, QGraphicsScene *scene):CShape
     rect.setBottomRight(bottomright);
 }
 
-void CRect::setStyle()
-{
-    if(iscurrent&&isselected)item->setPen(selcurpen);
-    else if(iscurrent)item->setPen(curpen);
-    else if(isselected)item->setPen(selpen);
-    else item->setPen(standardpen);
-}
-
 void CRect::draw()
 {
     item=new QGraphicsRectItem();
-    redraw();
-    mainscene->addItem(item);
-    setStyle();
-    item->show();
+    setitem(item);
 }
 
 void CRect::redraw()
@@ -63,11 +52,6 @@ void CRect::FinishTempDraw(QPointF point)
         flag=false;
         redraw();
     }
-}
-
-bool CRect::pointInside(QPointF point)
-{
-    return item->contains(point);
 }
 
 QString CRect::save()

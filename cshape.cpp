@@ -33,6 +33,15 @@ QString CShape::classname()
     return name;
 }
 
+void CShape::setitem(QAbstractGraphicsShapeItem *item)
+{
+    baseitem=item;
+    redraw();
+    mainscene->addItem(baseitem);
+    setStyle();
+    baseitem->show();
+}
+
 void CShape::selected()
 {    
     if(!isselected){
@@ -61,4 +70,22 @@ void CShape::removecurrent()
         iscurrent=false;
         setStyle();
     }
+}
+
+void CShape::setStyle()
+{
+    if(iscurrent&&isselected)baseitem->setPen(selcurpen);
+    else if(iscurrent)baseitem->setPen(curpen);
+    else if(isselected)baseitem->setPen(selpen);
+    else baseitem->setPen(standardpen);
+}
+
+void CShape::removes()
+{
+    mainscene->removeItem(baseitem);
+}
+
+bool CShape::pointInside(QPointF point)
+{
+    return baseitem->contains(point);
 }

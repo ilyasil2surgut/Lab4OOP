@@ -19,26 +19,10 @@ CCircle::CCircle(QPointF point,  QGraphicsScene *scene, int R):CShape(scene)
     flag=false;
 }
 
-bool CCircle::pointInside(QPointF point)
-{
-    return item->contains(point);
-}
-
-void CCircle::setStyle()
-{
-    if(iscurrent&&isselected)item->setPen(selcurpen);
-    else if(iscurrent)item->setPen(curpen);
-    else if(isselected)item->setPen(selpen);
-    else item->setPen(standardpen);
-}
-
 void CCircle::draw()
 {
     item=new QGraphicsEllipseItem();
-    redraw();
-    mainscene->addItem(item);
-    setStyle();
-    item->show();
+    setitem(item);
 }
 
 void CCircle::removes()

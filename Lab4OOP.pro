@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     cshape.cpp \
     crect.cpp \
     cgroup.cpp \
-    cnpolygon.cpp
+    cnpolygon.cpp \
+    cline.cpp
 
 HEADERS  += mainwindow.h \
     ccircle.h \
@@ -33,7 +34,8 @@ HEADERS  += mainwindow.h \
     cshape.h \
     crect.h \
     cgroup.h \
-    cnpolygon.h
+    cnpolygon.h \
+    cline.h
 
 FORMS    += mainwindow.ui
 

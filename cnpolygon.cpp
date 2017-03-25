@@ -66,11 +66,6 @@ QString CNpolygon::save()
     return out.join(QString());
 }
 
-bool CNpolygon::pointInside(QPointF point)
-{
-    return item->contains(point);
-}
-
 void CNpolygon::redraw()
 {
     item->setPolygon(polygon);
@@ -79,18 +74,7 @@ void CNpolygon::redraw()
 void CNpolygon::draw()
 {
     item=new QGraphicsPolygonItem();
-    redraw();
-    mainscene->addItem(item);
-    setStyle();
-    item->show();
-}
-
-void CNpolygon::setStyle()
-{
-    if(iscurrent&&isselected)item->setPen(selcurpen);
-    else if(iscurrent)item->setPen(curpen);
-    else if(isselected)item->setPen(selpen);
-    else item->setPen(standardpen);
+    setitem(item);
 }
 
 void CNpolygon::FinishTempDraw(QPointF point)

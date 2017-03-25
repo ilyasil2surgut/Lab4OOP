@@ -10,6 +10,7 @@
 #include <crect.h>
 #include <cgroup.h>
 #include <cnpolygon.h>
+#include <cline.h>
 
 class Editor : public QGraphicsView
 {

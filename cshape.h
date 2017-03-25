@@ -21,23 +21,26 @@ public:
     virtual void unselected();
     virtual void setcurrent();
     virtual void removecurrent();
+    virtual bool pointInside(QPointF point);
+    virtual QString classname();
+    virtual void setStyle();
+    virtual void removes();
 
     virtual void StartTempDraw(QPointF point)=0;
     virtual void ContTempDraw(QPointF point)=0;
-    virtual void FinishTempDraw(QPointF point)=0;
-    virtual void setStyle()=0;
+    virtual void FinishTempDraw(QPointF point)=0;    
     virtual void draw()=0;
-    virtual void redraw()=0;
-    virtual bool pointInside(QPointF point)=0;
+    virtual void redraw()=0;    
     virtual QString save()=0;
-    virtual void load(QString)=0;
-    virtual QString classname();
-    virtual ISaveable *clone()=0;
-    virtual void removes()=0;
+    virtual void load(QString)=0;    
+    virtual ISaveable *clone()=0;    
 protected:
+    void setitem(QAbstractGraphicsShapeItem* item);
     QGraphicsScene* mainscene;
+    QAbstractGraphicsShapeItem* baseitem;
     bool isselected;
     bool iscurrent;
+    bool flag;
     QString name;
     QPen selpen;
     QPen curpen;

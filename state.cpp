@@ -7,6 +7,8 @@ State::State(QObject *parent) : QObject(parent)
     remove_s=false;
     circle_s=true;
     rectangle_s=false;
+    line_s=false;
+    polygon_s=false;
     group_s=false;
     emit(addstate());
 }
@@ -39,6 +41,11 @@ bool State::rectstate()
 bool State::polstate()
 {
     return polygon_s;
+}
+
+bool State::linestate()
+{
+    return line_s;
 }
 
 bool State::groupstate()
@@ -89,7 +96,8 @@ State::circle()
     circle_s=true;
     rectangle_s=false;
     polygon_s=false;
-    addstate();
+    line_s=false;
+    adds();
     qDebug()<<"Circle state";
     emit(circlestate());
 }
@@ -98,7 +106,8 @@ State::rectangle()
     circle_s=false;
     rectangle_s=true;
     polygon_s=false;
-    addstate();
+    line_s=false;
+    adds();
     qDebug()<<"Rectangle state";
     emit(rectstate());
 }
@@ -108,8 +117,20 @@ State::polygon()
     circle_s=false;
     rectangle_s=false;
     polygon_s=true;
-    addstate();
+    line_s=false;
+    adds();
     qDebug()<<"Polygon state";
     emit(polstate());
+}
+
+State::line()
+{
+    line_s=true;
+    circle_s=false;
+    rectangle_s=false;
+    polygon_s=false;
+    adds();
+    qDebug()<<"Line state";
+    emit(linestate());
 }
 

@@ -34,6 +34,7 @@ void Editor::mousePressEvent(QMouseEvent *event)
         if(state->circlestate())Objects.append(new CCircle(scene));
         else if(state->rectstate())Objects.append(new CRect(scene));
         else if(state->polstate())Objects.append(new CNpolygon(scene,poly->value()));
+        else if(state->linestate())Objects.append(new CLine(scene));
         Objects.getlast()->StartTempDraw(event->pos());
         Objects.getlast()->setcurrent();
     }    
