@@ -6,8 +6,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->spinBox->setValue(50);
+    ui->spinBox->setMinimum(1);
+    ui->sb_polygon->setMinimum(3);
+    ui->sb_polygon->setValue(3);
     state=new State();
-    editor=new Editor(ui->graphicsView,ui->listWidget,state,ui->spinBox,this);
+    editor=new Editor(ui->graphicsView,ui->listWidget,state,ui->sb_polygon,this);
     connect(ui->pushButton_add,SIGNAL(clicked(bool)),state,SLOT(adds()));
     connect(ui->pushButton_select,SIGNAL(clicked(bool)),state,SLOT(selects()));
     connect(ui->pushButton_remove,SIGNAL(clicked(bool)),editor,SLOT(removes()));
@@ -15,8 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pb_rect,SIGNAL(clicked(bool)),state,SLOT(rectangle()));
     connect(ui->pb_group,SIGNAL(clicked(bool)),editor,SLOT(groupItems()));
     connect(ui->pb_Ungroup,SIGNAL(clicked(bool)),editor,SLOT(ungroupItems()));
-    ui->spinBox->setValue(50);
-    ui->spinBox->setMinimum(1);
+    connect(ui->pb_polygon,SIGNAL(clicked(bool)),state,SLOT(polygon()));
 }
 
 MainWindow::~MainWindow()

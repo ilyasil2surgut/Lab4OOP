@@ -67,7 +67,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>130</y>
+      <y>160</y>
       <width>261</width>
       <height>22</height>
      </rect>
@@ -77,9 +77,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>160</y>
+      <y>190</y>
       <width>261</width>
-      <height>391</height>
+      <height>361</height>
      </rect>
     </property>
    </widget>
@@ -112,8 +112,8 @@
    <widget class="QPushButton" name="pb_group">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>10</y>
+      <x>10</x>
+      <y>130</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -125,14 +125,37 @@
    <widget class="QPushButton" name="pb_Ungroup">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>10</y>
+      <x>160</x>
+      <y>130</y>
       <width>93</width>
       <height>28</height>
      </rect>
     </property>
     <property name="text">
      <string>Ungroup</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pb_polygon">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>10</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Polygon</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="sb_polygon">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>10</y>
+      <width>42</width>
+      <height>22</height>
+     </rect>
     </property>
    </widget>
   </widget>

@@ -36,6 +36,11 @@ bool State::rectstate()
     return rectangle_s;
 }
 
+bool State::polstate()
+{
+    return polygon_s;
+}
+
 bool State::groupstate()
 {
     return group_s;
@@ -83,6 +88,7 @@ State::circle()
 {
     circle_s=true;
     rectangle_s=false;
+    polygon_s=false;
     addstate();
     qDebug()<<"Circle state";
     emit(circlestate());
@@ -91,8 +97,19 @@ State::rectangle()
 {
     circle_s=false;
     rectangle_s=true;
+    polygon_s=false;
     addstate();
     qDebug()<<"Rectangle state";
     emit(rectstate());
+}
+
+State::polygon()
+{
+    circle_s=false;
+    rectangle_s=false;
+    polygon_s=true;
+    addstate();
+    qDebug()<<"Polygon state";
+    emit(polstate());
 }
 

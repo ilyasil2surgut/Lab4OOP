@@ -1,11 +1,11 @@
 #include "editor.h"
-Editor::Editor(QGraphicsView *_view, QListWidget *_listwidget,State *_state,QSpinBox *_radius, QWidget *parent):QGraphicsView(parent)
+Editor::Editor(QGraphicsView *_view, QListWidget *_listwidget,State *_state,QSpinBox *polygon, QWidget *parent):QGraphicsView(parent)
 {
     view=_view;
     state=_state;
     setup();
     listwidget=_listwidget;
-    radius=_radius;
+    poly=polygon;
     Objects.addPrototype(new CCircle(scene));
     Objects.addPrototype(new CRect(scene));
     Objects.addPrototype(new CGroup(scene));
@@ -33,6 +33,7 @@ void Editor::mousePressEvent(QMouseEvent *event)
         if(Objects.length()>0)Objects.getlast()->removecurrent();
         if(state->circlestate())Objects.append(new CCircle(scene));
         else if(state->rectstate())Objects.append(new CRect(scene));
+        else if(state->polstate())Objects.append(new CNpolygon(scene,poly->value()));
         Objects.getlast()->StartTempDraw(event->pos());
         Objects.getlast()->setcurrent();
     }    

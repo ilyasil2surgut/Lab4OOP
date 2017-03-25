@@ -9,12 +9,13 @@
 #include <QSpinBox>
 #include <crect.h>
 #include <cgroup.h>
+#include <cnpolygon.h>
 
 class Editor : public QGraphicsView
 {
     Q_OBJECT
 public:
-    Editor(QGraphicsView *_view,QListWidget* _listwidget, State *_state,QSpinBox *_radius,QWidget * parent = 0);
+    Editor(QGraphicsView *_view,QListWidget* _listwidget, State *_state,QSpinBox *polygon,QWidget * parent = 0);
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
@@ -29,7 +30,7 @@ private:
     QGraphicsView *view;
     QGraphicsScene *scene;
     QListWidget *listwidget;
-    QSpinBox *radius;
+    QSpinBox *poly;
     State *state;
     void setup();
     SLStorage<CShape*> Objects;

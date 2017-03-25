@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     state.cpp \
     cshape.cpp \
     crect.cpp \
-    cgroup.cpp
+    cgroup.cpp \
+    cnpolygon.cpp
 
 HEADERS  += mainwindow.h \
     ccircle.h \
@@ -31,7 +32,8 @@ HEADERS  += mainwindow.h \
     ../lab3oop/slstorage.h \
     cshape.h \
     crect.h \
-    cgroup.h
+    cgroup.h \
+    cnpolygon.h
 
 FORMS    += mainwindow.ui
 
