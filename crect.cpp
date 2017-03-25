@@ -49,8 +49,8 @@ void CRect::FinishTempDraw(QPointF point)
     if(flag){
         rect.setBottomRight(point);
         flag=false;
-        item->setTransformOriginPoint(item->boundingRect().center());
         redraw();
+        setRotationCenter(center());
     }
 }
 
@@ -106,4 +106,10 @@ void CRect::Rotate(QPointF end)
 QPointF CRect::center()
 {
     return item->boundingRect().center();
+}
+
+void CRect::setRotationCenter(QPointF point)
+{
+    rotationcenter=point;
+    item->setTransformOriginPoint(point);
 }

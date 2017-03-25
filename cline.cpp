@@ -101,6 +101,7 @@ void CLine::FinishTempDraw(QPointF point)
         line.setP2(point);
         redraw();
         flag=false;
+        setRotationCenter(center());
     }
 }
 

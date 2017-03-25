@@ -107,7 +107,7 @@ State::rotates()
     remove_s=false;
     group_s=false;
     rotate_s=true;
-    qDebug()<<"Group state";
+    qDebug()<<"Rotate state";
     emit(groupstate());
 }
 

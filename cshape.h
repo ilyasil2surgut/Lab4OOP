@@ -38,6 +38,8 @@ public:
     virtual ISaveable *clone()=0;
     virtual bool canRotate(double)=0;
     virtual void Rotate(QPointF)=0;
+    virtual QPointF RotationCenter();
+    virtual void setRotationCenter(QPointF);
     virtual QPointF center()=0;
 protected:
     void setitem(QAbstractGraphicsShapeItem* item);
@@ -52,6 +54,7 @@ protected:
     QPen curpen;
     QPen selcurpen;
     QPen standardpen;
+    QPointF rotationcenter;
 };
 
 #endif // CSHAPE_H

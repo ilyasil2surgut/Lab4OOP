@@ -77,6 +77,7 @@ void CCircle::FinishTempDraw(QPointF point)
         radius=QLineF(Center,point).length();
         flag=false;
         item->setTransformOriginPoint(QPointF(radius,radius));
+        setRotationCenter(center());
         redraw();
     }
 }

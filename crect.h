@@ -19,6 +19,7 @@ public:
     virtual bool canRotate(double);
     virtual void Rotate(QPointF);
     virtual QPointF center();
+    virtual void setRotationCenter(QPointF);
 private:
     QRectF rect;
     QGraphicsRectItem *item;

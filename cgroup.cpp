@@ -182,17 +182,28 @@ void CGroup::Rotate(QPointF end)
 
 void CGroup::initRotation(QPointF point)
 {
-    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next())
+    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
         i->current()->initRotation(point);
+        i->current()->setRotationCenter(center());
+    }
 }
 
 QPointF CGroup::center()
 {
-    return QPointF();
+    QPointF A;
+    double x,y;
+    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
+        x+=i->current()->center().x();
+        y+=i->current()->center().y();
+    }
+    A.setX(x/group.length());
+    A.setY(y/group.length());
+    return A;
 }
 
 CShape *CGroup::popfirst()
 {
+    group.getfirst()->setRotationCenter(group.getfirst()->center());
     return group.pop(0);
 }
 

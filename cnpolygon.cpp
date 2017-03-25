@@ -51,6 +51,13 @@ QPointF CNpolygon::center()
     return Center;
 }
 
+void CNpolygon::setRotationCenter(QPointF point)
+{
+    rotationcenter=point;
+    item->setTransformOriginPoint(RotationCenter());
+
+}
+
 ISaveable *CNpolygon::clone()
 {
     return new CNpolygon(mainscene,polygon,Center,sides);
@@ -102,8 +109,8 @@ void CNpolygon::FinishTempDraw(QPointF point)
     if(flag){
         radius=QLineF(Center,point).length();
         polygon=createpolygon(Center,radius,sides);
-        item->setTransformOriginPoint(Center);
         flag=false;
+        setRotationCenter(center());
         redraw();
     }
 }

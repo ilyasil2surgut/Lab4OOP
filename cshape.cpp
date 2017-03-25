@@ -88,13 +88,24 @@ void CShape::removes()
 void CShape::initRotation(QPointF point)
 {
     rotationstart=point;
+    qDebug()<<"Rotation initiated for "<<classname();
 }
 
 double CShape::calculateAngle(QPointF end)
 {
-    QLineF A(center(),rotationstart);
-    QLineF B(center(),end);
+    QLineF A(RotationCenter(),rotationstart);
+    QLineF B(RotationCenter(),end);
     return -A.angleTo(B);
+}
+
+QPointF CShape::RotationCenter()
+{
+    return rotationcenter;
+}
+
+void CShape::setRotationCenter(QPointF point)
+{
+    rotationcenter=point;
 }
 
 bool CShape::pointInside(QPointF point)
