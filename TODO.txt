@@ -1,4 +1,3 @@
-N-polygon
 Line
 Rotate
 	canRotate

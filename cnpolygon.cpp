@@ -40,9 +40,18 @@ ISaveable *CNpolygon::clone()
     return new CNpolygon(mainscene,polygon,sides);
 }
 
-void CNpolygon::load(QString)
+void CNpolygon::load(QString str)
 {
-
+    QStringList list=str.split(":").last().split(" ");
+    sides=list.first().toInt();list.pop_front();
+    QPolygonF pol;
+    for(int i=0;i<sides;i++){
+        QPointF a(list[0].toInt(),list[1].toInt());
+        pol<<a;
+        list.pop_front();
+        list.pop_front();
+    }
+    polygon=pol;
 }
 
 QString CNpolygon::save()
