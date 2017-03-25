@@ -82,6 +82,13 @@ void Editor::loadItems()
     drawlistwidget();
 }
 
+void Editor::ungroup(CGroup *object)
+{
+    while(!(object->isEmpty())){
+        Objects.append(object->popfirst());
+    }
+}
+
 void Editor::groupItems()
 {
     int count=0;
@@ -103,6 +110,23 @@ void Editor::groupItems()
         drawlistwidget();
     }
     else qDebug()<<"Not enough elements selected";
+}
+
+void Editor::ungroupItems()
+{
+    int count=0;
+    for(Iterator<CShape*>* i=Objects.CreateIterator();!i->Eol();i->next()){
+        if(i->current()->isSelected()){
+            CGroup *object=dynamic_cast<CGroup*>(i->current());
+            if(object){
+                Objects.pop(count);
+                qDebug()<<"Ungrouping ";
+                ungroup(object);
+                drawlistwidget();
+            }
+        }
+        count++;
+    }
 }
 
 void Editor::setup()

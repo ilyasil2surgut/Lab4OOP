@@ -165,3 +165,13 @@ void CGroup::removecurrent()
         i->current()->removecurrent();
     }
 }
+
+CShape *CGroup::popfirst()
+{
+    return group.pop(0);
+}
+
+bool CGroup::isEmpty()
+{
+    return group.isEmpty();
+}

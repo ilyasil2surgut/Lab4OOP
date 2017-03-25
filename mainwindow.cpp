@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pb_circle,SIGNAL(clicked(bool)),state,SLOT(circle()));
     connect(ui->pb_rect,SIGNAL(clicked(bool)),state,SLOT(rectangle()));
     connect(ui->pb_group,SIGNAL(clicked(bool)),editor,SLOT(groupItems()));
+    connect(ui->pb_Ungroup,SIGNAL(clicked(bool)),editor,SLOT(ungroupItems()));
     ui->spinBox->setValue(50);
     ui->spinBox->setMinimum(1);
 }

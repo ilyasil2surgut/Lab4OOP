@@ -26,6 +26,8 @@ public:
     virtual void unselected();
     virtual void setcurrent();
     virtual void removecurrent();
+    CShape* popfirst();
+    bool isEmpty();
 private:
     SLStorage<CShape*> group;
 };

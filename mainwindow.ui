@@ -122,6 +122,19 @@
      <string>Group</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pb_Ungroup">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>10</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ungroup</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

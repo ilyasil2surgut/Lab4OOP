@@ -1,7 +1,10 @@
-Ungroup
 N-polygon
+Line
 Rotate
 	canRotate
 Move
-	canMove
+	canMove        
+Resize
 Save/Load refinement
+Copy/Cut/Paste
+    Key events

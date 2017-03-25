@@ -37,4 +37,6 @@ FORMS    += mainwindow.ui
 
 DISTFILES += \
     storage.txt \
-    .gitignore
+    .gitignore \
+    TODO.txt \
+    LR.doc

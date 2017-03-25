@@ -23,6 +23,7 @@ public:
     void redraw();
     void saveItems();
     void loadItems();
+    void ungroup(CGroup* object);
 
 private:
     QGraphicsView *view;
@@ -40,6 +41,7 @@ signals:
 public slots:
     removes();
     void groupItems();
+    void ungroupItems();
 };
 
 #endif // EDITOR_H
