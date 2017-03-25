@@ -1,4 +1,3 @@
-Line
 Rotate
 	canRotate
 Move

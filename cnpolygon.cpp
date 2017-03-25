@@ -9,22 +9,23 @@ CNpolygon::CNpolygon(QGraphicsScene *scene, int n):CShape(scene)
     qDebug()<<"CNpolygon with N:"<<sides;
 }
 
-CNpolygon::CNpolygon(QGraphicsScene *scene, QPolygonF pol, int n):CShape(scene)
+CNpolygon::CNpolygon(QGraphicsScene *scene, QPolygonF pol, QPointF centerpoint, int n):CShape(scene)
 {
     name="CNpolygon";
     flag=false;
     sides=n;
     polygon=pol;
+    Center=centerpoint;
 }
 
-QPolygonF CNpolygon::createpolygon(QPointF center, double R, int n)
+QPolygonF CNpolygon::createpolygon(QPointF centerpoint, double R, int n)
 {
     QPolygonF Pol;
     for(int i=0;i<n;i++){
         QPointF a;
         a.setX((R*qSin(2*M_PI/n*i)));
         a.setY((R*qCos(2*M_PI/n*i)));
-        a+=center;
+        a+=centerpoint;
         Pol << a;
     }
     return Pol;
@@ -35,15 +36,32 @@ void CNpolygon::removes()
     mainscene->removeItem(item);
 }
 
+bool CNpolygon::canRotate(double)
+{
+    return true;
+}
+
+void CNpolygon::Rotate(QPointF end)
+{
+    if(canRotate(calculateAngle(end)))item->setRotation(calculateAngle(end));
+}
+
+QPointF CNpolygon::center()
+{
+    return Center;
+}
+
 ISaveable *CNpolygon::clone()
 {
-    return new CNpolygon(mainscene,polygon,sides);
+    return new CNpolygon(mainscene,polygon,Center,sides);
 }
 
 void CNpolygon::load(QString str)
 {
     QStringList list=str.split(":").last().split(" ");
     sides=list.first().toInt();list.pop_front();
+    Center.setX(list.first().toInt());list.pop_front();
+    Center.setY(list.first().toInt());list.pop_front();
     QPolygonF pol;
     for(int i=0;i<sides;i++){
         QPointF a(list[0].toInt(),list[1].toInt());
@@ -59,6 +77,8 @@ QString CNpolygon::save()
     QStringList out;
     out<<classname()<<":";
     out<<QString::number(sides)<<" ";
+    out<<QString::number(Center.x())<<" ";
+    out<<QString::number(Center.y())<<" ";
     for(int i=0;i<sides;i++){
         out<<QString::number(polygon.at(i).x())<<" ";
         out<<QString::number(polygon.at(i).y())<<" ";
@@ -80,8 +100,9 @@ void CNpolygon::draw()
 void CNpolygon::FinishTempDraw(QPointF point)
 {
     if(flag){
-        radius=QLineF(center,point).length();
-        polygon=createpolygon(center,radius,sides);
+        radius=QLineF(Center,point).length();
+        polygon=createpolygon(Center,radius,sides);
+        item->setTransformOriginPoint(Center);
         flag=false;
         redraw();
     }
@@ -90,8 +111,8 @@ void CNpolygon::FinishTempDraw(QPointF point)
 void CNpolygon::ContTempDraw(QPointF point)
 {
     if(flag){
-        radius=QLineF(center,point).length();
-        polygon=createpolygon(center,radius,sides);
+        radius=QLineF(Center,point).length();
+        polygon=createpolygon(Center,radius,sides);
         redraw();
     }
 }
@@ -99,8 +120,8 @@ void CNpolygon::ContTempDraw(QPointF point)
 void CNpolygon::StartTempDraw(QPointF point)
 {
     if(flag){
-        center=point;radius=0;
-        polygon=createpolygon(center,radius,sides);
+        Center=point;radius=0;
+        polygon=createpolygon(Center,radius,sides);
         draw();
     }
 }

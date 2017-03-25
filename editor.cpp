@@ -37,18 +37,44 @@ void Editor::mousePressEvent(QMouseEvent *event)
         else if(state->linestate())Objects.append(new CLine(scene));
         Objects.getlast()->StartTempDraw(event->pos());
         Objects.getlast()->setcurrent();
-    }    
+    }
+    else if(state->rotatestate()){
+        for(Iterator<CShape*>* i=Objects.CreateIterator();!i->Eol();i->next()){
+            if(i->current()->isSelected()){
+                i->current()->initRotation(event->pos());
+            }
+        }
+    }
 }
 
 void Editor::mouseReleaseEvent(QMouseEvent *event)
 {
-    if(!Objects.isEmpty()&&state->addstate()){Objects.getlast()->FinishTempDraw(event->pos());}
+    if(!Objects.isEmpty()){
+        if(state->addstate())Objects.getlast()->FinishTempDraw(event->pos());
+        else if(state->rotatestate()){
+            for(Iterator<CShape*>* i=Objects.CreateIterator();!i->Eol();i->next()){
+                if(i->current()->isSelected()){
+                    i->current()->Rotate(event->pos());
+                }
+            }
+        }
+    }
     drawlistwidget();
 }
 
 void Editor::mouseMoveEvent(QMouseEvent *event)
 {
-    if(!Objects.isEmpty()&&state->addstate())Objects.getlast()->ContTempDraw(event->pos());
+    if(!Objects.isEmpty()){
+        if(state->addstate())Objects.getlast()->ContTempDraw(event->pos());
+        else if(state->rotatestate()){
+            for(Iterator<CShape*>* i=Objects.CreateIterator();!i->Eol();i->next()){
+                if(i->current()->isSelected()){
+                    i->current()->Rotate(event->pos());
+                }
+            }
+        }
+    }
+
 }
 
 void Editor::mouseDoubleClickEvent(QMouseEvent *event)
@@ -90,6 +116,7 @@ void Editor::ungroup(CGroup *object)
         Objects.append(object->popfirst());
     }
 }
+
 
 void Editor::groupItems()
 {

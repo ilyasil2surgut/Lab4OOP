@@ -24,8 +24,11 @@ public:
     void StartTempDraw(QPointF point);
     void ContTempDraw(QPointF point);
     void FinishTempDraw(QPointF point);
+    virtual bool canRotate(double);
+    virtual void Rotate(QPointF);
+    virtual QPointF center();
 private:
-    QPointF center;
+    QPointF Center;
     int radius;
     QGraphicsEllipseItem *item;
 };

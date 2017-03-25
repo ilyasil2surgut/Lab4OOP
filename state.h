@@ -12,6 +12,7 @@ public:
     bool addstate();
     bool selectstate();
     bool removestate();
+    bool rotatestate();
 
     bool circlestate();
     bool rectstate();
@@ -23,6 +24,7 @@ private:
     bool add_s;
     bool select_s;
     bool remove_s;
+    bool rotate_s;
 
     bool circle_s;
     bool rectangle_s;
@@ -40,6 +42,7 @@ public slots:
     selects();
     removes();
     groups();
+    rotates();
 
     circle();
     rectangle();

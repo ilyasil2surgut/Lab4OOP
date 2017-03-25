@@ -111,5 +111,20 @@ QPolygonF CLine::createclickpol()
     pol<<(line.p1()+down)<<(line.p1()+up)<<(line.p2()+down)<<(line.p2()+up);
     //qDebug()<<pol;
     return pol;
-//    clickpolygon->setPolygon(pol);
+    //    clickpolygon->setPolygon(pol);
+}
+
+bool CLine::canRotate(double)
+{
+    return false;
+}
+
+void CLine::Rotate(QPointF)
+{
+
+}
+
+QPointF CLine::center()
+{
+    return createclickpol().boundingRect().center();
 }

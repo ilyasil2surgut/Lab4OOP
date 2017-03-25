@@ -166,6 +166,31 @@ void CGroup::removecurrent()
     }
 }
 
+bool CGroup::canRotate(double angle)
+{
+    return false;
+}
+
+void CGroup::Rotate(QPointF end)
+{
+    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
+        if(i->current()->canRotate(calculateAngle(end))){
+            i->current()->Rotate(end);
+        }
+    }
+}
+
+void CGroup::initRotation(QPointF point)
+{
+    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next())
+        i->current()->initRotation(point);
+}
+
+QPointF CGroup::center()
+{
+    return QPointF();
+}
+
 CShape *CGroup::popfirst()
 {
     return group.pop(0);

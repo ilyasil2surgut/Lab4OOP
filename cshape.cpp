@@ -85,6 +85,18 @@ void CShape::removes()
     mainscene->removeItem(baseitem);
 }
 
+void CShape::initRotation(QPointF point)
+{
+    rotationstart=point;
+}
+
+double CShape::calculateAngle(QPointF end)
+{
+    QLineF A(center(),rotationstart);
+    QLineF B(center(),end);
+    return -A.angleTo(B);
+}
+
 bool CShape::pointInside(QPointF point)
 {
     return baseitem->contains(point);

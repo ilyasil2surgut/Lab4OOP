@@ -16,6 +16,9 @@ public:
     virtual void load(QString);
     virtual ISaveable *clone();
     virtual void removes();
+    virtual bool canRotate(double);
+    virtual void Rotate(QPointF);
+    virtual QPointF center();
 private:
     QRectF rect;
     QGraphicsRectItem *item;

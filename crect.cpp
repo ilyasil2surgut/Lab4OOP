@@ -47,9 +47,9 @@ void CRect::ContTempDraw(QPointF point)
 void CRect::FinishTempDraw(QPointF point)
 {
     if(flag){
-
         rect.setBottomRight(point);
         flag=false;
+        item->setTransformOriginPoint(item->boundingRect().center());
         redraw();
     }
 }
@@ -85,5 +85,25 @@ ISaveable *CRect::clone()
 void CRect::removes()
 {
     mainscene->removeItem(item);
-    qDebug()<<"Rectangle removed"<<center;
+}
+
+bool CRect::canRotate(double angle)
+{
+//    QGraphicsRectItem *temp=new QGraphicsRectItem(item->rect());
+//    mainscene->addItem(temp);
+//    temp->setTransformOriginPoint(QPointF(rect.width(),rect.height()));
+//    temp->setRotation(angle);
+//    if((temp->boundingRect().topLeft().x()<0)||(temp->boundingRect().topLeft().y()<0)) return false;
+//    else return true;
+    return true;
+}
+
+void CRect::Rotate(QPointF end)
+{
+    if(canRotate(calculateAngle(end)))item->setRotation(calculateAngle(end));
+}
+
+QPointF CRect::center()
+{
+    return item->boundingRect().center();
 }

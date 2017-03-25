@@ -25,6 +25,8 @@ public:
     virtual QString classname();
     virtual void setStyle();
     virtual void removes();
+    virtual void initRotation(QPointF);
+    double calculateAngle(QPointF);
 
     virtual void StartTempDraw(QPointF point)=0;
     virtual void ContTempDraw(QPointF point)=0;
@@ -33,7 +35,10 @@ public:
     virtual void redraw()=0;    
     virtual QString save()=0;
     virtual void load(QString)=0;    
-    virtual ISaveable *clone()=0;    
+    virtual ISaveable *clone()=0;
+    virtual bool canRotate(double)=0;
+    virtual void Rotate(QPointF)=0;
+    virtual QPointF center()=0;
 protected:
     void setitem(QAbstractGraphicsShapeItem* item);
     QGraphicsScene* mainscene;
@@ -41,6 +46,7 @@ protected:
     bool isselected;
     bool iscurrent;
     bool flag;
+    QPointF rotationstart;
     QString name;
     QPen selpen;
     QPen curpen;
