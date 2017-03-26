@@ -121,7 +121,7 @@ bool CShape::checkpoints(QPolygonF check, double angle)
 //        qDebug()<<A.p2()<<mainscene->sceneRect();
         A.setP2(A.p2());
         if((A.p2().x()<0)||(A.p2().y()<0)||(A.p2().x()>800)||(A.p2().y()>500)){
-            qDebug()<<"Check fail"<<i<<A.p2()<<check;
+//            qDebug()<<"Check fail"<<i<<A.p2()<<check;
             return false;
         }
     }
