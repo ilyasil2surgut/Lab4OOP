@@ -36,11 +36,6 @@ void CNpolygon::removes()
     mainscene->removeItem(item);
 }
 
-bool CNpolygon::canRotate(double)
-{
-    return true;
-}
-
 void CNpolygon::Rotate(QPointF end)
 {
     if(canRotate(calculateAngle(end)))item->setRotation(calculateAngle(end));
@@ -56,6 +51,11 @@ void CNpolygon::setRotationCenter(QPointF point)
     rotationcenter=point;
     item->setTransformOriginPoint(RotationCenter());
 
+}
+
+QPolygonF CNpolygon::checkpolygon()
+{
+    return polygon;
 }
 
 ISaveable *CNpolygon::clone()

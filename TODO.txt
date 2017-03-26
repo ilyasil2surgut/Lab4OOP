@@ -1,4 +1,3 @@
-Rotate
 	canRotate
 Move
 	canMove        

@@ -168,7 +168,12 @@ void CGroup::removecurrent()
 
 bool CGroup::canRotate(double angle)
 {
-    return false;
+    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
+        if(!(i->current()->canRotate(angle))){
+            return false;
+        }
+    }
+    return true;
 }
 
 void CGroup::Rotate(QPointF end)
@@ -186,6 +191,11 @@ void CGroup::initRotation(QPointF point)
         i->current()->initRotation(point);
         i->current()->setRotationCenter(center());
     }
+}
+
+QPolygonF CGroup::checkpolygon()
+{
+    return QPolygonF();
 }
 
 QPointF CGroup::center()

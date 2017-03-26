@@ -87,17 +87,6 @@ void CRect::removes()
     mainscene->removeItem(item);
 }
 
-bool CRect::canRotate(double angle)
-{
-//    QGraphicsRectItem *temp=new QGraphicsRectItem(item->rect());
-//    mainscene->addItem(temp);
-//    temp->setTransformOriginPoint(QPointF(rect.width(),rect.height()));
-//    temp->setRotation(angle);
-//    if((temp->boundingRect().topLeft().x()<0)||(temp->boundingRect().topLeft().y()<0)) return false;
-//    else return true;
-    return true;
-}
-
 void CRect::Rotate(QPointF end)
 {
     item->setRotation(calculateAngle(end));
@@ -105,11 +94,20 @@ void CRect::Rotate(QPointF end)
 
 QPointF CRect::center()
 {
-    return item->boundingRect().center();
+    QPointF A;
+    A.setX((rect.topLeft().x()+rect.topRight().x())/2);
+    A.setY((rect.topLeft().y()+rect.bottomRight().y())/2);
+    return A;
 }
 
 void CRect::setRotationCenter(QPointF point)
 {
     rotationcenter=point;
     item->setTransformOriginPoint(point);
+}
+
+QPolygonF CRect::checkpolygon()
+{
+    QPolygonF A(rect);
+    return A;
 }

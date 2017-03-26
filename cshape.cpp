@@ -108,6 +108,39 @@ void CShape::setRotationCenter(QPointF point)
     rotationcenter=point;
 }
 
+bool CShape::checkpoints(QPolygonF check, double angle)
+{
+//    QPointF offset(280,50);
+    for(int i=0;i<check.size();i++){
+        QLineF A;
+        A.setP1(RotationCenter());
+        A.setP2(check[i]);
+//        qDebug()<<A.p2()<<i;
+        if(A.p1().x()<=A.p2().x())A.setAngle(angle+A.angle());
+        else A.setAngle(angle+A.angle());
+//        qDebug()<<A.p2()<<mainscene->sceneRect();
+        A.setP2(A.p2());
+        if((A.p2().x()<0)||(A.p2().y()<0)||(A.p2().x()>800)||(A.p2().y()>500)){
+            qDebug()<<"Check fail"<<i<<A.p2()<<check;
+            return false;
+        }
+    }
+    return true;
+}
+
+bool CShape::checkpoints(QPolygonF check, QPointF delta)
+{
+    for(int i=0;i<check.size();i++){
+        if(!(mainscene->sceneRect().contains(check[i]+delta)))return false;
+    }
+    return true;
+}
+
+bool CShape::canRotate(double angle)
+{
+    return checkpoints(checkpolygon(),angle);
+}
+
 bool CShape::pointInside(QPointF point)
 {
     return baseitem->contains(point);

@@ -20,10 +20,10 @@ public:
     void ContTempDraw(QPointF point);
     void FinishTempDraw(QPointF point);
     QPolygonF createclickpol();
-    virtual bool canRotate(double);
     virtual void Rotate(QPointF);
     virtual QPointF center();
     virtual void setRotationCenter(QPointF);
+    virtual QPolygonF checkpolygon();
 private:
     QLineF line;
     QGraphicsLineItem *item;

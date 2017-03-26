@@ -29,6 +29,7 @@ public:
     virtual bool canRotate(double);
     virtual void Rotate(QPointF);
     virtual void initRotation(QPointF);
+    virtual QPolygonF checkpolygon();
     virtual QPointF center();
     CShape* popfirst();
     bool isEmpty();

@@ -54,7 +54,7 @@ void Editor::mouseReleaseEvent(QMouseEvent *event)
         else if(state->rotatestate()){
             for(Iterator<CShape*>* i=Objects.CreateIterator();!i->Eol();i->next()){
                 if(i->current()->isSelected()){
-                    i->current()->Rotate(event->pos());
+                    if(i->current()->canRotate(i->current()->calculateAngle(event->pos())))i->current()->Rotate(event->pos());
                 }
             }
         }
@@ -69,7 +69,7 @@ void Editor::mouseMoveEvent(QMouseEvent *event)
         else if(state->rotatestate()){
             for(Iterator<CShape*>* i=Objects.CreateIterator();!i->Eol();i->next()){
                 if(i->current()->isSelected()){
-                    i->current()->Rotate(event->pos());
+                    if(i->current()->canRotate(i->current()->calculateAngle(event->pos())))i->current()->Rotate(event->pos());
                 }
             }
         }
@@ -162,6 +162,7 @@ void Editor::setup()
 {
     scene=new QGraphicsScene(this);
     scene->setSceneRect(0,0,view->width(),view->height());
+    qDebug()<<scene->sceneRect();
     setScene(scene);
     setFixedSize(view->width(),view->height());
     move(view->pos()+QPoint(0,40));

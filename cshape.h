@@ -27,6 +27,11 @@ public:
     virtual void removes();
     virtual void initRotation(QPointF);
     double calculateAngle(QPointF);
+    virtual QPointF RotationCenter();
+    virtual void setRotationCenter(QPointF);
+    virtual bool checkpoints(QPolygonF,double);
+    virtual bool checkpoints(QPolygonF,QPointF);
+    virtual bool canRotate(double);
 
     virtual void StartTempDraw(QPointF point)=0;
     virtual void ContTempDraw(QPointF point)=0;
@@ -36,11 +41,9 @@ public:
     virtual QString save()=0;
     virtual void load(QString)=0;    
     virtual ISaveable *clone()=0;
-    virtual bool canRotate(double)=0;
     virtual void Rotate(QPointF)=0;
-    virtual QPointF RotationCenter();
-    virtual void setRotationCenter(QPointF);
     virtual QPointF center()=0;
+    virtual QPolygonF checkpolygon()=0;
 protected:
     void setitem(QAbstractGraphicsShapeItem* item);
     QGraphicsScene* mainscene;

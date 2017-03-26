@@ -110,14 +110,9 @@ void CLine::FinishTempDraw(QPointF point)
 QPolygonF CLine::createclickpol()
 {
     QPolygonF pol;
-    QPointF down(0,15);QPointF up(0,-15);
+    QPointF down(15,15);QPointF up(-15,-15);
     pol<<(line.p1()+down)<<(line.p2()+down)<<(line.p2()+up)<<(line.p1()+up);
     return pol;
-}
-
-bool CLine::canRotate(double)
-{
-    return false;
 }
 
 void CLine::Rotate(QPointF point)
@@ -139,4 +134,11 @@ void CLine::setRotationCenter(QPointF point)
     rotationcenter=point;
     item->setTransformOriginPoint(point);
     clickpolygon->setTransformOriginPoint(point);
+}
+
+QPolygonF CLine::checkpolygon()
+{
+    QPolygonF A;
+    A<<line.p1()<<line.p2();
+    return A;
 }

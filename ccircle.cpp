@@ -6,7 +6,7 @@ CCircle::CCircle(QGraphicsScene *scene):CShape(scene)
 //    qDebug()<<"Circle added";
     name="CCircle";
     isselected=false;
-    flag=true;
+    flag=true;    
 }
 
 CCircle::CCircle(QPointF point,  QGraphicsScene *scene, int R):CShape(scene)
@@ -81,11 +81,6 @@ void CCircle::FinishTempDraw(QPointF point)
     }
 }
 
-bool CCircle::canRotate(double)
-{
-    return true;
-}
-
 void CCircle::Rotate(QPointF end)
 {
     item->setRotation(calculateAngle(end));
@@ -100,6 +95,19 @@ void CCircle::setRotationCenter(QPointF point)
 {
     rotationcenter=point;
     item->setTransformOriginPoint(point);
+}
+
+QPolygonF CCircle::checkpolygon()
+{
+    QPolygonF Pol;
+    for(int i=0;i<10;i++){
+        QPointF a;
+        a.setX((radius*qSin(2*M_PI/10*i)));
+        a.setY((radius*qCos(2*M_PI/10*i)));
+        a+=Center;
+        Pol << a;
+    }
+    return Pol;
 }
 
 void CCircle::redraw()
