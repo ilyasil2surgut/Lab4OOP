@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_remove,SIGNAL(clicked(bool)),editor,SLOT(removes()));
     connect(ui->pb_group,SIGNAL(clicked(bool)),editor,SLOT(groupItems()));
     connect(ui->pb_Ungroup,SIGNAL(clicked(bool)),editor,SLOT(ungroupItems()));
+    connect(ui->pb_move,SIGNAL(clicked(bool)),state,SLOT(moves()));
 
     connect(ui->pb_rotate,SIGNAL(clicked(bool)),state,SLOT(rotates()));
     connect(ui->pb_circle,SIGNAL(clicked(bool)),state,SLOT(circle()));

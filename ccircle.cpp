@@ -88,6 +88,12 @@ void CCircle::Rotate(QPointF end)
     item->setRotation(Angle);
 }
 
+void CCircle::Move(QPointF destination)
+{
+    Center=Center+movedelta(destination);
+    redraw();
+}
+
 QPointF CCircle::center()
 {
     return Center;

@@ -169,15 +169,15 @@ void CGroup::removecurrent()
     }
 }
 
-//bool CGroup::canRotate(double angle)
-//{
-//    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
-//        if(!(i->current()->canRotate(angle))){
-//            return false;
-//        }
-//    }
-//    return true;
-//}
+bool CGroup::canRotate(double angle)
+{
+    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
+        if(!(i->current()->canRotate(angle))){
+            return false;
+        }
+    }
+    return true;
+}
 
 void CGroup::Rotate(QPointF end)
 {
@@ -186,6 +186,28 @@ void CGroup::Rotate(QPointF end)
         i->current()->Rotate(end);
     }
 
+}
+
+void CGroup::Move(QPointF destination)
+{
+    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
+        i->current()->Move(destination);
+    }
+}
+
+bool CGroup::canMove(QPointF destination)
+{
+    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
+        if(!(i->current()->canMove(destination))) return false;
+    }
+    return true;
+}
+
+void CGroup::initMove(QPointF destination)
+{
+    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
+        i->current()->initMove(destination);
+    }
 }
 
 void CGroup::initRotation(QPointF point)

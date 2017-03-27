@@ -17,6 +17,7 @@ public:
     virtual ISaveable *clone();
     virtual void removes();
     virtual void Rotate(QPointF);
+    virtual void Move(QPointF);
     virtual QPointF center();
     virtual void setRotationCenter(QPointF);
     virtual QPolygonF checkpolygon();

@@ -93,6 +93,14 @@ void CRect::removes()
 void CRect::Rotate(QPointF end)
 {
     item->setRotation(calculateAngle(end));
+    Angle=calculateAngle(end);
+}
+
+void CRect::Move(QPointF destination)
+{
+    rect.setTopLeft(rect.topLeft()+movedelta(destination));
+    rect.setBottomRight(rect.bottomRight()+movedelta(destination));
+    redraw();
 }
 
 QPointF CRect::center()

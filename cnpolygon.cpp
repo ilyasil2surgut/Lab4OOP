@@ -39,7 +39,15 @@ void CNpolygon::removes()
 
 void CNpolygon::Rotate(QPointF end)
 {
-    if(canRotate(calculateAngle(end)))item->setRotation(calculateAngle(end));
+    item->setRotation(calculateAngle(end));
+    Angle=calculateAngle(end);
+}
+
+void CNpolygon::Move(QPointF destination)
+{
+    Center=Center+movedelta(destination);
+    polygon=createpolygon(Center,radius,sides);
+    redraw();
 }
 
 QPointF CNpolygon::center()

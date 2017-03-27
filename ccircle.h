@@ -25,6 +25,7 @@ public:
     void ContTempDraw(QPointF point);
     void FinishTempDraw(QPointF point);
     virtual void Rotate(QPointF);
+    virtual void Move(QPointF);
     virtual QPointF center();
     void setRotationCenter(QPointF);
     virtual QPolygonF checkpolygon();

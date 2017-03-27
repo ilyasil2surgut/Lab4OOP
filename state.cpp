@@ -33,6 +33,11 @@ bool State::rotatestate()
     return rotate_s;
 }
 
+bool State::movestate()
+{
+    return move_s;
+}
+
 bool State::circlestate()
 {
     return circle_s;
@@ -65,6 +70,7 @@ State::adds()
     remove_s=false;
     group_s=false;
     rotate_s=false;
+    move_s=false;
     emit(addstate());
 }
 
@@ -75,6 +81,7 @@ State::selects()
     remove_s=false;
     group_s=false;
     rotate_s=false;
+    move_s=false;
     emit(selectstate());
 }
 
@@ -85,6 +92,7 @@ State::removes()
     remove_s=true;
     group_s=false;
     rotate_s=false;
+    move_s=false;
     emit(removestate());
 }
 
@@ -95,6 +103,7 @@ State::groups()
     remove_s=false;
     group_s=true;
     rotate_s=false;
+    move_s=false;
     qDebug()<<"Group state";
     emit(groupstate());
 
@@ -107,6 +116,19 @@ State::rotates()
     remove_s=false;
     group_s=false;
     rotate_s=true;
+    move_s=false;
+    qDebug()<<"Rotate state";
+    emit(groupstate());
+}
+
+State::moves()
+{
+    add_s=false;
+    select_s=false;
+    remove_s=false;
+    group_s=false;
+    rotate_s=false;
+    move_s=true;
     qDebug()<<"Rotate state";
     emit(groupstate());
 }

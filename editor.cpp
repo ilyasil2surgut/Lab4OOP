@@ -45,6 +45,13 @@ void Editor::mousePressEvent(QMouseEvent *event)
             }
         }
     }
+    else if(state->movestate()){
+        for(Iterator<CShape*>* i=Objects.CreateIterator();!i->Eol();i->next()){
+            if((i->current()->isSelected())&&(i->current()->pointInside(event->pos()))){
+                i->current()->initMove(event->pos());
+            }
+        }
+    }
 }
 
 void Editor::mouseReleaseEvent(QMouseEvent *event)
@@ -70,6 +77,16 @@ void Editor::mouseMoveEvent(QMouseEvent *event)
             for(Iterator<CShape*>* i=Objects.CreateIterator();!i->Eol();i->next()){
                 if(i->current()->isSelected()){
                     if(i->current()->canRotate(i->current()->calculateAngle(event->pos())))i->current()->Rotate(event->pos());
+                }
+            }
+        }
+        else if(state->movestate()){
+            for(Iterator<CShape*>* i=Objects.CreateIterator();!i->Eol();i->next()){
+                if((i->current()->isSelected())&&(i->current()->pointInside(event->pos()))){
+                    if(i->current()->canMove(event->pos())){
+                        i->current()->Move(event->pos());
+                        i->current()->initMove(event->pos());
+                    }
                 }
             }
         }

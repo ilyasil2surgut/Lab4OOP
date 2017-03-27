@@ -26,6 +26,8 @@ public:
     virtual void setStyle();
     virtual void removes();
     virtual void initRotation(QPointF);
+    virtual void initMove(QPointF);
+    virtual QPointF movedelta(QPointF);
     double calculateAngle(QPointF);
     virtual QPointF RotationCenter();
     virtual void setRotationCenter(QPointF);
@@ -34,6 +36,7 @@ public:
     virtual bool canRotate(double);
     virtual void setAngle(double);
     virtual void determineAngle();
+    virtual bool canMove(QPointF);
 
     virtual void StartTempDraw(QPointF point)=0;
     virtual void ContTempDraw(QPointF point)=0;
@@ -44,8 +47,10 @@ public:
     virtual void load(QString)=0;    
     virtual ISaveable *clone()=0;
     virtual void Rotate(QPointF)=0;
+    virtual void Move(QPointF)=0;
     virtual QPointF center()=0;
     virtual QPolygonF checkpolygon()=0;
+
 protected:
     void setitem(QAbstractGraphicsShapeItem* item);
     QGraphicsScene* mainscene;
@@ -61,6 +66,7 @@ protected:
     QPen selcurpen;
     QPen standardpen;
     QPointF rotationcenter;
+    QPointF movestart;
 };
 
 #endif // CSHAPE_H

@@ -93,6 +93,16 @@ void CShape::initRotation(QPointF point)
     qDebug()<<"Rotation initiated for "<<classname();
 }
 
+void CShape::initMove(QPointF point)
+{
+    movestart=point;
+}
+
+QPointF CShape::movedelta(QPointF destination)
+{
+    return destination-movestart;
+}
+
 double CShape::calculateAngle(QPointF end)
 {
     QLineF A(RotationCenter(),rotationstart);
@@ -117,7 +127,6 @@ bool CShape::checkpoints(QPolygonF check, double angle)
         A.setP1(RotationCenter());
         A.setP2(check[i]);
         A.setAngle(angle+A.angle());
-        A.setP2(A.p2());
         if((A.p2().x()<0)||(A.p2().y()<0)||(A.p2().x()>800)||(A.p2().y()>500)){
             return false;
         }
@@ -125,10 +134,20 @@ bool CShape::checkpoints(QPolygonF check, double angle)
     return true;
 }
 
-bool CShape::checkpoints(QPolygonF check, QPointF delta)
+bool CShape::checkpoints(QPolygonF check, QPointF destination)
 {
+    QPolygonF moved;
     for(int i=0;i<check.size();i++){
-        if(!(mainscene->sceneRect().contains(check[i]+delta)))return false;
+        moved<<(check[i]+movedelta(destination));
+    }
+    for(int i=0;i<moved.size();i++){
+        QLineF A;
+        A.setP1(RotationCenter());
+        A.setP2(moved[i]);
+        A.setAngle(Angle);
+        if((A.p2().x()<0)||(A.p2().y()<0)||(A.p2().x()>800)||(A.p2().y()>500)){
+            return false;
+        }
     }
     return true;
 }
@@ -146,6 +165,11 @@ void CShape::setAngle(double a)
 void CShape::determineAngle()
 {
     Angle=baseitem->rotation();
+}
+
+bool CShape::canMove(QPointF destination)
+{
+    return checkpoints(checkpolygon(),destination);
 }
 
 bool CShape::pointInside(QPointF point)
