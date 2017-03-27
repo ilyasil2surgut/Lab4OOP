@@ -9,7 +9,7 @@ CCircle::CCircle(QGraphicsScene *scene):CShape(scene)
     flag=true;    
 }
 
-CCircle::CCircle(QPointF point,  QGraphicsScene *scene, int R):CShape(scene)
+CCircle::CCircle(QPointF point,  QGraphicsScene *scene, int R, double angle):CShape(scene)
 {
     Center=point;
     radius=R;
@@ -17,6 +17,7 @@ CCircle::CCircle(QPointF point,  QGraphicsScene *scene, int R):CShape(scene)
     name="CCircle";
     isselected=false;
     flag=false;
+    Angle=angle;
 }
 
 void CCircle::draw()
@@ -54,7 +55,7 @@ void CCircle::load(QString str)
 
 ISaveable *CCircle::clone()
 {
-    return new CCircle(Center,mainscene,radius);
+    return new CCircle(Center,mainscene,radius,Angle);
 }
 
 void CCircle::StartTempDraw(QPointF point)
@@ -83,7 +84,8 @@ void CCircle::FinishTempDraw(QPointF point)
 
 void CCircle::Rotate(QPointF end)
 {
-    item->setRotation(calculateAngle(end));
+    Angle=calculateAngle(end);
+    item->setRotation(Angle);
 }
 
 QPointF CCircle::center()

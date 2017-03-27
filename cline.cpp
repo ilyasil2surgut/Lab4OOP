@@ -8,11 +8,12 @@ CLine::CLine(QGraphicsScene *scene):CShape(scene)
     clickpolygon=new QGraphicsPolygonItem();
 }
 
-CLine::CLine(QGraphicsScene *scene, QLineF _line):CShape(scene)
+CLine::CLine(QGraphicsScene *scene, QLineF _line, double angle):CShape(scene)
 {
     name="CLine";
     flag=false;
     line=_line;
+    Angle=angle;
     clickpolygon=new QGraphicsPolygonItem(createclickpol());
 }
 
@@ -30,6 +31,7 @@ void CLine::draw()
     mainscene->addItem(clickpolygon);
     setStyle();
     item->show();
+    item->setRotation(Angle);
     clickpolygon->hide();
 }
 
@@ -57,6 +59,7 @@ QString CLine::save()
 {
     QStringList out;
     out<<classname();out<<":";
+    out<<QString::number(Angle)<<" ";
     out<<QString::number(line.p1().x())<<" ";
     out<<QString::number(line.p1().y())<<" ";
     out<<QString::number(line.p2().x())<<" ";
@@ -67,6 +70,7 @@ QString CLine::save()
 void CLine::load(QString str)
 {
     QStringList list=str.split(":").last().split(" ");
+    Angle=list.first().toInt();list.pop_front();
     double x1=list.first().toInt();list.pop_front();
     double y1=list.first().toInt();list.pop_front();
     double x2=list.first().toInt();list.pop_front();
@@ -77,7 +81,7 @@ void CLine::load(QString str)
 
 ISaveable *CLine::clone()
 {
-    return new CLine(mainscene,line);
+    return new CLine(mainscene,line,Angle);
 }
 
 void CLine::StartTempDraw(QPointF point)

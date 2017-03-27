@@ -9,13 +9,14 @@ CNpolygon::CNpolygon(QGraphicsScene *scene, int n):CShape(scene)
     qDebug()<<"CNpolygon with N:"<<sides;
 }
 
-CNpolygon::CNpolygon(QGraphicsScene *scene, QPolygonF pol, QPointF centerpoint, int n):CShape(scene)
+CNpolygon::CNpolygon(QGraphicsScene *scene, QPolygonF pol, QPointF centerpoint, int n, double angle):CShape(scene)
 {
     name="CNpolygon";
     flag=false;
     sides=n;
     polygon=pol;
     Center=centerpoint;
+    Angle=angle;
 }
 
 QPolygonF CNpolygon::createpolygon(QPointF centerpoint, double R, int n)
@@ -60,13 +61,14 @@ QPolygonF CNpolygon::checkpolygon()
 
 ISaveable *CNpolygon::clone()
 {
-    return new CNpolygon(mainscene,polygon,Center,sides);
+    return new CNpolygon(mainscene,polygon,Center,sides,Angle);
 }
 
 void CNpolygon::load(QString str)
 {
     QStringList list=str.split(":").last().split(" ");
     sides=list.first().toInt();list.pop_front();
+    Angle=list.first().toInt();list.pop_front();
     Center.setX(list.first().toInt());list.pop_front();
     Center.setY(list.first().toInt());list.pop_front();
     QPolygonF pol;
@@ -84,6 +86,7 @@ QString CNpolygon::save()
     QStringList out;
     out<<classname()<<":";
     out<<QString::number(sides)<<" ";
+    out<<QString::number(Angle)<<" ";
     out<<QString::number(Center.x())<<" ";
     out<<QString::number(Center.y())<<" ";
     for(int i=0;i<sides;i++){

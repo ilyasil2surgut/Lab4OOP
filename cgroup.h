@@ -26,7 +26,7 @@ public:
     virtual void unselected();
     virtual void setcurrent();
     virtual void removecurrent();
-    virtual bool canRotate(double);
+//    virtual bool canRotate(double);
     virtual void Rotate(QPointF);
     virtual void initRotation(QPointF);
     virtual QPolygonF checkpolygon();

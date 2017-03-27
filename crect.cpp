@@ -7,12 +7,13 @@ CRect::CRect(QGraphicsScene *scene):CShape(scene)
     flag=true;
 }
 
-CRect::CRect(QPointF topleft, QPointF bottomright, QGraphicsScene *scene):CShape(scene)
+CRect::CRect(QPointF topleft, QPointF bottomright, QGraphicsScene *scene, double angle):CShape(scene)
 {
     name=QString("Rectangle");
     flag=false;
     rect.setTopLeft(topleft);
     rect.setBottomRight(bottomright);
+    Angle=angle;
 }
 
 void CRect::draw()
@@ -58,6 +59,7 @@ QString CRect::save()
 {
     QStringList out;
     out<<classname();out<<":";
+    out<<QString::number(Angle)<<" ";
     out<<QString::number(rect.topLeft().x())<<" ";
     out<<QString::number(rect.topLeft().y())<<" ";
     out<<QString::number(rect.bottomRight().x())<<" ";
@@ -69,6 +71,7 @@ void CRect::load(QString str)
 {
     if(str.split(":").first()==classname()){
         QStringList list=str.split(":").last().split(" ");
+        Angle=list.first().toInt();list.pop_front();
         double x1=list.first().toInt();list.pop_front();
         double y1=list.first().toInt();list.pop_front();
         double x2=list.first().toInt();list.pop_front();
@@ -79,7 +82,7 @@ void CRect::load(QString str)
 
 ISaveable *CRect::clone()
 {
-    return new CRect(rect.topLeft(),rect.bottomRight(),mainscene);
+    return new CRect(rect.topLeft(),rect.bottomRight(),mainscene,Angle);
 }
 
 void CRect::removes()

@@ -32,6 +32,8 @@ public:
     virtual bool checkpoints(QPolygonF,double);
     virtual bool checkpoints(QPolygonF,QPointF);
     virtual bool canRotate(double);
+    virtual void setAngle(double);
+    virtual void determineAngle();
 
     virtual void StartTempDraw(QPointF point)=0;
     virtual void ContTempDraw(QPointF point)=0;
@@ -51,6 +53,7 @@ protected:
     bool isselected;
     bool iscurrent;
     bool flag;
+    double Angle;
     QPointF rotationstart;
     QString name;
     QPen selpen;

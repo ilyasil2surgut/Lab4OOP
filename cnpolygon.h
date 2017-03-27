@@ -6,7 +6,7 @@ class CNpolygon:public CShape
 {
 public:
     CNpolygon(QGraphicsScene *scene,int n=3);
-    CNpolygon(QGraphicsScene *scene,QPolygonF pol,QPointF centerpoint, int n);
+    CNpolygon(QGraphicsScene *scene,QPolygonF pol,QPointF centerpoint, int n,double angle);
     virtual void StartTempDraw(QPointF point);
     virtual void ContTempDraw(QPointF point);
     virtual void FinishTempDraw(QPointF point);

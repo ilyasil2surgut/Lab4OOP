@@ -14,7 +14,7 @@ class CCircle:public CShape
 {
 public:
     CCircle(QGraphicsScene *scene);
-    CCircle(QPointF point,QGraphicsScene *scene, int R);
+    CCircle(QPointF point,QGraphicsScene *scene, int R,double angle);
     void draw();
     void redraw();
     void removes();

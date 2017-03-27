@@ -1,7 +1,8 @@
-	canRotate
 Move
 	canMove        
 Resize
 Save/Load refinement
 Copy/Cut/Paste
     Key events
+canRotate for group
+Angle save

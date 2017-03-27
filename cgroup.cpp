@@ -31,6 +31,7 @@ void CGroup::setStyle()
 void CGroup::draw()
 {
     for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
+        i->current()->setRotationCenter(center());
         i->current()->draw();
     }
 }
@@ -69,6 +70,7 @@ QString CGroup::save()
 {
     QStringList out;
     out<<classname();out<<":";
+    out<<QString::number(Angle)<<"|";
     for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
         QString temp=i->current()->save();temp.chop(1);temp.replace(":",";");
         out<<temp;
@@ -82,6 +84,7 @@ void CGroup::load(QString str)
 {
     //group.clear();
     QStringList list=str.split(":").last().split("|");
+    Angle=list.first().toInt();list.pop_front();
     list.pop_back();
     Storage<ISaveable*> prototypes=group.Prototypes();
     for(;!list.isEmpty();){
@@ -166,23 +169,23 @@ void CGroup::removecurrent()
     }
 }
 
-bool CGroup::canRotate(double angle)
-{
-    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
-        if(!(i->current()->canRotate(angle))){
-            return false;
-        }
-    }
-    return true;
-}
+//bool CGroup::canRotate(double angle)
+//{
+//    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
+//        if(!(i->current()->canRotate(angle))){
+//            return false;
+//        }
+//    }
+//    return true;
+//}
 
 void CGroup::Rotate(QPointF end)
 {
+    Angle=calculateAngle(end);
     for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
-        if(i->current()->canRotate(calculateAngle(end))){
-            i->current()->Rotate(end);
-        }
+        i->current()->Rotate(end);
     }
+
 }
 
 void CGroup::initRotation(QPointF point)
@@ -195,7 +198,11 @@ void CGroup::initRotation(QPointF point)
 
 QPolygonF CGroup::checkpolygon()
 {
-    return QPolygonF();
+    QPolygonF A;
+    for(Iterator<CShape*>* i=group.CreateIterator();!i->Eol();i->next()){
+        A=A.united(i->current()->checkpolygon());
+    }
+    return A;
 }
 
 QPointF CGroup::center()
@@ -214,6 +221,7 @@ QPointF CGroup::center()
 CShape *CGroup::popfirst()
 {
     group.getfirst()->setRotationCenter(group.getfirst()->center());
+    group.getfirst()->determineAngle();
     return group.pop(0);
 }
 

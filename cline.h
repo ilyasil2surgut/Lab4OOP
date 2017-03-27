@@ -7,7 +7,7 @@ class CLine:public CShape
 {
 public:
     CLine(QGraphicsScene *scene);
-    CLine(QGraphicsScene *scene,QLineF line);
+    CLine(QGraphicsScene *scene,QLineF line,double angle);
     bool pointInside(QPointF point);
     void draw();
     void redraw();

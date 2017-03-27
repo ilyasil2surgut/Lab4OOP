@@ -6,7 +6,7 @@ class CRect:public CShape
 {
 public:
     CRect(QGraphicsScene *scene);
-    CRect(QPointF topleft,QPointF bottomright,QGraphicsScene *scene);
+    CRect(QPointF topleft,QPointF bottomright,QGraphicsScene *scene,double angle);
     virtual void draw();
     void redraw();
     void StartTempDraw(QPointF point);
