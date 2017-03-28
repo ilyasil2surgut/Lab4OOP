@@ -25,6 +25,7 @@ void CRect::draw()
 void CRect::redraw()
 {
     item->setRect(rect);
+    item->setRotation(Angle);
 }
 
 void CRect::StartTempDraw(QPointF point)
@@ -98,8 +99,10 @@ void CRect::Rotate(QPointF end)
 
 void CRect::Move(QPointF destination)
 {
+    item->setRotation(0);
     rect.setTopLeft(rect.topLeft()+movedelta(destination));
     rect.setBottomRight(rect.bottomRight()+movedelta(destination));
+    setRotationCenter(RotationCenter()+movedelta(destination));
     redraw();
 }
 

@@ -65,6 +65,14 @@ void Editor::mouseReleaseEvent(QMouseEvent *event)
                 }
             }
         }
+//        else if(state->movestate()){
+//            for(Iterator<CShape*>* i=Objects.CreateIterator();!i->Eol();i->next()){
+//                if(i->current()->canMove(event->pos())){
+//                    i->current()->Move(event->pos());
+//                    i->current()->initMove(event->pos());
+//                }
+//            }
+//        }
     }
     drawlistwidget();
 }

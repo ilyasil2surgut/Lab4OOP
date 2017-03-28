@@ -40,6 +40,8 @@ void CLine::redraw()
 {
     item->setLine(line);
     clickpolygon->setPolygon(createclickpol());
+    item->setRotation(Angle);
+    clickpolygon->setRotation(Angle);
 }
 
 void CLine::setStyle()
@@ -129,8 +131,10 @@ void CLine::Rotate(QPointF point)
 
 void CLine::Move(QPointF destination)
 {
+    item->setRotation(0);
     line.setP1(line.p1()+movedelta(destination));
     line.setP2(line.p1()+movedelta(destination));
+    setRotationCenter(RotationCenter()+movedelta(destination));
     redraw();
 }
 
